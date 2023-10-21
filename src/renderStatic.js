@@ -18,4 +18,8 @@ export function renderTaskForm(){
     //render task form
 }
 
+export function renderTaskDetail(){
+    
+}
+
 
