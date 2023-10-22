@@ -1,6 +1,7 @@
 import "./css/style.css"
 import {appFuncs} from "./applogics"
 import {renderer} from "./renderDynamic"
+import { formRenderer } from "./formRenderer";
 
 const menuHandler = (()=>{
     let event;
@@ -17,7 +18,6 @@ const menuHandler = (()=>{
         const [getterMethod, params] = getterMap[e.currentTarget.getAttribute("id")];
         renderer.taskGetter = getterMethod;
         for ( const param in params){
-            console.log(params[param]);
             renderer.params[param] = params[param];
         }
         //isSorted param of rendered is controlled by the sort button
@@ -47,9 +47,22 @@ document.querySelectorAll(".menu-item,.proj-list").forEach(element=>{
         }
     });
 });
-
+document.querySelector("#sort").addEventListener("click", (e)=>{
+    if ( renderer.params.isSorted ){
+        e.currentTarget.classList.remove("selected");
+    }else{
+        e.currentTarget.classList.add("selected");
+    }
+    renderer.params.isSorted = !renderer.params.isSorted;  
+});
 renderer.taskGetter = appFuncs.getAllTasks;
 renderer.renderTaskList();
+
+document.querySelector("#add-button").addEventListener("click", ()=>{
+    formRenderer.showOverlayedContent("#task-form-overlayed");
+})
+
+
 
 
 

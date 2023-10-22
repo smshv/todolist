@@ -8,6 +8,7 @@ body{
     font-size: 1.6rem;
 }
 #content{
+    position: relative;
     display: grid;
     height: 100vh;
     width: 100vw;
@@ -37,8 +38,27 @@ nav li{
     color: #991b1b;
     content: "// ";
 }
+#sort{
+    width: 25px;
+    height: 25px;
+    padding: 2px;
+    border: 1px solid black;
+    transform: rotate(180deg);
+    margin-bottom: 10px;
+}
+#sort:hover{
+    border-color: #3ba395;
+    filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%);
+}
+#sort.selected{
+    box-shadow: inset -1px -1px 2px #504f4f;
+}
+#sort.selected:hover{
+    box-shadow: inset -1px -1px 2px #68cec1;
+}
 #main-body{
     grid-area: 2 / 2 / 3 / 3;
+    text-align: right;
 }
 .proj-list{
     padding-left: 10px;
@@ -123,15 +143,45 @@ nav li{
     background-color: #eee;
 }
 .edit-button{
-    filter: invert(14%) sepia(30%) saturate(6438%) hue-rotate(349deg) brightness(107%) contrast(91%)
+    filter: invert(14%) sepia(30%) saturate(6438%) hue-rotate(349deg) brightness(107%) contrast(91%);
 }
 .edit-button:hover{
-    filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%)
+    filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%);
 }
 .delete-button{
     transform: scale(0.5);
-    filter: invert(14%) sepia(30%) saturate(6438%) hue-rotate(349deg) brightness(107%) contrast(91%)
+    filter: invert(14%) sepia(30%) saturate(6438%) hue-rotate(349deg) brightness(107%) contrast(91%);
 }
 .delete-button:hover{
-    filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%)
+    filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%);
+}
+
+#container-overlayed{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    opacity: 0.6;
+    visibility: hidden;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#add-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #3ba395;
+    color: white;
+    font-weight: 800;
+    font-size: 40px;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
