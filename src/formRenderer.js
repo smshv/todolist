@@ -1,23 +1,36 @@
 export const formRenderer = (()=>{
-    let overlayContainer = "#container-overlayed";
-    let overlayedContent = null;
-    function showOverlayedContent(selector){
-        overlayedContent = selector;
-        document.querySelector(overlayContainer).style["visibility"] = 
-        "visible";
-        
-        document.querySelector(selector).style["visibility"] = 
-        "visible";
+    let currentParent;
+    const titleMap = {"task-form":"// Create Task", "proj-form":"// Create Project"};
+    function showOverlayedContent(id){
+        document.querySelector("#container-overlayed").style["visibility"] = "visible";
+        const overlayedContent = document.querySelector(id);
+        currentParent = overlayedContent.parentElement;
+        overlayedContent.classList.add("active");
+        document.querySelector("#mini-window-container").appendChild(
+            overlayedContent
+        );
     }
-
+    function handleFormMenu(id="task-form"){
+        document.querySelector("#form-title").textContent = titleMap[id];
+        document.querySelectorAll(".form-wrapper").forEach(x=>{
+            x.style["visibility"] = "hidden";
+        });
+        document.querySelector(`div#${id}`).style["visibility"] = "visible";
+        document.querySelectorAll(".form-menu-item").forEach(x=>{
+            x.classList.remove("selected");
+        });
+        document.querySelector(`span#${id}`).classList.add("selected");
+    }
     function hideOverlayedContent(){
-        document.querySelector(overlayContainer).style["visibility"] = 
+        document.querySelector("#container-overlayed").style["visibility"]= 
         "hidden";
-        document.querySelector(overlayedContent).style["visibility"] = 
-        "hidden";
+        const overlayedContent = document.querySelector("#mini-window-container").firstElementChild;
+        overlayedContent.classList.remove("active");
+        currentParent.appendChild(
+            overlayedContent
+        );
     }
-
-    return {showOverlayedContent, hideOverlayedContent}
+    return {showOverlayedContent, hideOverlayedContent, handleFormMenu}
 
 })();
 

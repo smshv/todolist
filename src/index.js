@@ -1,6 +1,7 @@
 import "./css/style.css"
 import {appFuncs} from "./applogics"
 import {renderer} from "./renderDynamic"
+import { handleClick } from "./handleTaskCardEvent";
 import { formRenderer } from "./formRenderer";
 
 const menuHandler = (()=>{
@@ -49,18 +50,35 @@ document.querySelectorAll(".menu-item,.proj-list").forEach(element=>{
 });
 document.querySelector("#sort").addEventListener("click", (e)=>{
     if ( renderer.params.isSorted ){
-        e.currentTarget.classList.remove("selected");
+        e.currentTarget.classList.remove("sorted");
     }else{
-        e.currentTarget.classList.add("selected");
+        e.currentTarget.classList.add("sorted");
     }
     renderer.params.isSorted = !renderer.params.isSorted;  
 });
 renderer.taskGetter = appFuncs.getAllTasks;
 renderer.renderTaskList();
 
+document.querySelectorAll(".form-menu-item").forEach(x=>{
+    x.addEventListener("click", (e)=>{
+        formRenderer.handleFormMenu(e.currentTarget.getAttribute("id"));
+    })
+});
+
 document.querySelector("#add-button").addEventListener("click", ()=>{
-    formRenderer.showOverlayedContent("#task-form-overlayed");
+    formRenderer.showOverlayedContent("#form-create");
+    formRenderer.handleFormMenu();
 })
+document.querySelectorAll(".cancel").forEach(x=>{
+    x.addEventListener("click", ()=>{
+        formRenderer.hideOverlayedContent();
+    })
+});
+
+document.querySelector("#main-body").addEventListener("click", (e)=>{
+    handleClick(e);
+});
+
 
 
 

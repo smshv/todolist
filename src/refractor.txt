@@ -1,0 +1,1 @@
+remove span id/class in li

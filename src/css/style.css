@@ -34,10 +34,11 @@ ul{
 nav li{
     margin-bottom: 20px;
 }
-.menu-item:hover::before, .proj-list-item:hover::before{
+.menu-item:hover,.proj-list-item:hover,.menu-item:hover::before, .proj-list-item:hover::before, .selected, .selected::before, .form-menu-item:hover, .form-menu-item:hover::before{
     color: #991b1b;
     content: "// ";
 }
+
 #sort{
     width: 25px;
     height: 25px;
@@ -50,10 +51,10 @@ nav li{
     border-color: #3ba395;
     filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%);
 }
-#sort.selected{
+#sort.sorted{
     box-shadow: inset -1px -1px 2px #504f4f;
 }
-#sort.selected:hover{
+#sort.sorted:hover{
     box-shadow: inset -1px -1px 2px #68cec1;
 }
 #main-body{
@@ -155,20 +156,126 @@ nav li{
 .delete-button:hover{
     filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg) brightness(94%) contrast(82%);
 }
-
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
 #container-overlayed{
     position: absolute;
     top: 0px;
     left: 0px;
     height: 100vh;
     width: 100vw;
-    background-color: black;
-    opacity: 0.6;
+    background-color: rgb(0, 0, 0, 0.6);
     visibility: hidden;
     z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+#form-create{
+    width: 0px;
+    height: 0px;
+    border: 2px solid gray;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-auto-rows: 80px 1fr;
+    visibility: hidden;
+}
+#form-create.active{
+    width: 650px;
+    height: 550px;
+    visibility: visible;
+}
+#form-title{
+    grid-column: 1 / 3;
+    background-color: #c38d9e;
+    font-size: 1.6rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#form-nav{
+    background-color: #e1dfdf;
+    padding: 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+#form-container{
+    grid-column: 2 / 3;
+    background-color: white;
+    position: relative;
+}
+.form-wrapper{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    visibility: hidden;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+}
+.form-wrapper.active{
+    position: relative;
+    visibility: visible;
+    background: 2px solid gray;
+    background-color: white;
+}
+
+form#task-form, form#proj-form{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 10px;
+}
+label{
+    grid-column: 1 / 2;
+    color: #991b1b;
+}
+input, select, textarea{
+    padding-left: 10px;
+    padding-right: 10px;
+    grid-column: 2 / 3;
+    outline-color: #991b1b;
+}
+input, select{
+    height: 20px;
+}
+select{
+    width: 70px;
+}
+textarea{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 150px;
+}
+input#done-status{
+    height: 20px;
+    width: 20px;
+    justify-self: start;
+}
+.submit, .cancel{
+    margin-top: 40px;
+    margin-right: 40px;
+    appearance: none;
+    width: 100px;
+    height: 40px;
+    font: inherit;
+    font-size: 1.4rem;
+    color: #991b1b;
+    border: 2px solid #991b1b;
+    border-radius: 10px;
+    background-color: white;
+}
+.submit:hover, .cancel:hover{
+    background-color: #991b1b;
+    color: white;
+}
+#ask-consent{
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
 }
 #add-button{
     width: 50px;
