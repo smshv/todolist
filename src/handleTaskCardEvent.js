@@ -1,12 +1,12 @@
-import { formRenderer } from "./formRenderer";
+import overlayedContentRenderer from "./overlayedContentRenderer";
 
-export function handleClick(e){
-    const elemClass = e.target.classList[0];
-    console.log(elemClass);
-        switch ( elemClass ){
-            case "edit-button":
-                console.log("asdas ", elemClass);
-                formRenderer.showOverlayedContent("div#task-form");
-                break
-    }
-} 
+export default function handleClick(e) {
+  const elemClass = e.target.classList[0];
+  switch (elemClass) {
+    case "edit-button":
+      overlayedContentRenderer.showOverlayedContent("div#task-form");
+      break;
+    default:
+      break;
+  }
+}

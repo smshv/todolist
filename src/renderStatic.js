@@ -1,25 +1,21 @@
 import { createDomElem } from "./index";
 
-export function renderHeader(){
-    // render header
+export function renderHeader() {
+  // render header
 }
-export function renderSideMenu(){
-    // render header
+export function renderSideMenu() {
+  // render header
 }
-export function footer(){
-    // render header
-}
-
-export function renderProjForm(){
-    // renderProjForm
+export function footer() {
+  // render header
 }
 
-export function renderTaskForm(){
-    //render task form
+export function renderProjForm() {
+  // renderProjForm
 }
 
-export function renderTaskDetail(){
-    
+export function renderTaskForm() {
+  //render task form
 }
 
-
+export function renderTaskDetail() {}

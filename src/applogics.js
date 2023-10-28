@@ -1,109 +1,145 @@
-export const appFuncs = (()=>{    
-    const projects = new Map();
+const appFuncs = (() => {
+  const projects = new Map();
 
-    class todotask{
-        constructor (title, description, projName, dueDate, priority, doneStatus){
-            this.title = title;
-            this.description = description;
-            this.projName = projName;
-            this._dueDate = dueDate;
-            this.priority = priority;
-            this.doneStatus = doneStatus;
-        }
-        get dueDate(){
-            return this._dueDate;
-        }
-        set dueDate(newDueDate) {
-            if ( true ){
-                this._dueDate = newDueDate;
-            }else{
-                alert("Invalid due date");
-            }
-        }
+  class ToDoTask {
+    #dueDate;
+
+    constructor(title, description, projName, dueDate, priority, doneStatus) {
+      this.title = title;
+      this.description = description;
+      this.projName = projName;
+      this.#dueDate = dueDate;
+      this.priority = priority;
+      this.doneStatus = doneStatus;
     }
 
-    function createToDoTask(title, description, projName, dueDate, priority, doneStatus=false){
-
-        if ( projects.has(projName) ){
-            projects.get(projName).push(new todotask(title, description, projName, dueDate, priority, doneStatus));
-        }else{
-        projects.set(projName, [new todotask(title, description, projName, dueDate, priority, doneStatus)]);
-        }
+    get dueDate() {
+      return this.#dueDate;
     }
 
-    function getProjectList(){
-        return Array.from(projects.keys());
+    set dueDate(newDueDate) {
+      if (true) {
+        this.#dueDate = newDueDate;
+      } else {
+        alert("Invalid due date");
+      }
     }
+  }
 
-    function createProject(projectName){
-        if ( !projects.has(projectName) ){
-        projects.set(projectName, []);
-        }else{
-            alert(`${projectName} already exists`);
-        }
+  function createToDoTask(
+    title,
+    description,
+    projName,
+    dueDate,
+    priority,
+    doneStatus = false,
+  ) {
+    if (projects.has(projName)) {
+      projects
+        .get(projName)
+        .push(
+          new ToDoTask(
+            title,
+            description,
+            projName,
+            dueDate,
+            priority,
+            doneStatus,
+          ),
+        );
+    } else {
+      projects.set(projName, [
+        new ToDoTask(
+          title,
+          description,
+          projName,
+          dueDate,
+          priority,
+          doneStatus,
+        ),
+      ]);
     }
+  }
 
-    function deleteProject(projectName){
-        if ( projects.has(projectName) ){
-        projects.delete(projectName);
-    }else{
-        alert(`${projectName} does not exist`);
-    }
-    }
+  function getProjectList() {
+    return Array.from(projects.keys());
+  }
 
-    function deleteTask(project, taskIndex){
-        project.splice(taskIndex, 1);
+  function createProject(projectName) {
+    if (!projects.has(projectName)) {
+      projects.set(projectName, []);
+    } else {
+      alert(`${projectName} already exists`);
     }
+  }
 
-    function heapify(List, bound, ind){
-        let largest = ind;
-        const left = ind*2 + 1;
-        const right = ind*2 + 2;
-        if ( left < bound && List[left].dueDate > List[largest].dueDate ){
-            largest = left;
-        }
-        if ( right < bound && List[right].dueDate > List[largest].dueDate ){
-            largest = right;
-        }
-        if ( largest != ind ){
-            [List[ind], List[largest]] = [List[largest], List[ind]];
-            heapify(List, bound, largest);
-        }
+  function deleteProject(projectName) {
+    if (projects.has(projectName)) {
+      projects.delete(projectName);
+    } else {
+      alert(`${projectName} does not exist`);
     }
-    function heapSort(List){
-        for (let i = 0; i < Math.floor(List.length/2) - 1; i++ ){
-            heapify(List, List.length, i);
-        }
-        for (let i = List.length - 1; i > 0 ; i-- ){
-            [List[i], List[0]] = [List[0], List[i]];
-            heapify(List, i, 0);
-        }
-    }
+  }
 
-    function sortByDueDate(taskstoDo){
-        heapSort(taskstoDo);
-    }
-    function getAllTasks(params){
-        const tasksList = [];
-        projects.forEach(( tasksToDo, _)=>{
-            for (let i=0; i < tasksToDo.length; i++){
-                tasksList.push([tasksToDo[i], i]);
-            }
-        });
-        return params.isSorted ? sortByDueDate(tasksList) : tasksList; 
-    }
-    function getTaskByProject(params){
-        const tasksList = projects.get(params.projName).map((task,id)=>{
-            return [task, id];
-        });
-        return params.isSorted ? sortByDueDate(tasksList) : tasksList;
-    }
+  function deleteTask(project, taskIndex) {
+    project.splice(taskIndex, 1);
+  }
 
-    return {createToDoTask, getProjectList, createProject,
-    deleteProject, deleteTask, getAllTasks, getTaskByProject};
+  function heapify(inputList, bound, ind) {
+    let largest = ind;
+    const left = ind * 2 + 1;
+    const right = ind * 2 + 2;
+    const List = inputList;
+    if (left < bound && List[left].dueDate > List[largest].dueDate) {
+      largest = left;
+    }
+    if (right < bound && List[right].dueDate > List[largest].dueDate) {
+      largest = right;
+    }
+    if (largest !== ind) {
+      [List[ind], List[largest]] = [List[largest], List[ind]];
+      heapify(List, bound, largest);
+    }
+  }
+  function heapSort(inputList) {
+    const List = inputList;
+    for (let i = 0; i < Math.floor(List.length / 2) - 1; i += 1) {
+      heapify(List, List.length, i);
+    }
+    for (let i = List.length - 1; i > 0; i = -1) {
+      [List[i], List[0]] = [List[0], List[i]];
+      heapify(List, i, 0);
+    }
+  }
+
+  function sortByDueDate(taskstoDo) {
+    heapSort(taskstoDo);
+  }
+  function getAllTasks(params) {
+    const tasksList = [];
+    projects.forEach((tasksToDo) => {
+      for (let i = 0; i < tasksToDo.length; i += 1) {
+        tasksList.push([tasksToDo[i], i]);
+      }
+    });
+    return params.isSorted ? sortByDueDate(tasksList) : tasksList;
+  }
+  function getTaskByProject(params) {
+    const tasksList = projects
+      .get(params.projName)
+      .map((task, id) => [task, id]);
+    return params.isSorted ? sortByDueDate(tasksList) : tasksList;
+  }
+
+  return {
+    createToDoTask,
+    getProjectList,
+    createProject,
+    deleteProject,
+    deleteTask,
+    getAllTasks,
+    getTaskByProject,
+  };
 })();
 
-
-
-
-
+export default appFuncs;

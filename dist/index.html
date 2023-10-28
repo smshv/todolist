@@ -1,99 +1,120 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>ToDoListApp</title>
-        <script defer src="main.js"></script>
-        <style href="style.css" rel="stylesheet"></style>
-    </head>
-    <body>
-        <div id="content">
-            <div id="container-overlayed">
-                <div id="mini-window-container">   
-                    <!-- Place holder for overlayed contents --> 
-                </div>
-            </div>
+  <head>
+    <meta charset="utf-8" />
+    <title>ToDoListApp</title>
+    <script defer src="main.js"></script>
+    <style href="style.css" rel="stylesheet"></style>
+  </head>
+  <body>
+    <div id="content">
+      <div id="container-overlayed">
+        <div id="mini-window-container">
+          <!-- Place holder for overlayed contents -->
+        </div>
+      </div>
 
-            <header>
-                <img src="logo.png">
-            </header>
-            <nav>
-                <ul id="nav-menu">
-                    <li><span class="menu-item" id="home">Home</span></li>
-                    <li><span class="menu-item" id="today">Today</span></li>
-                    <li><span class="menu-item" id="week">Week</span></li>
-                    <li><span class="menu-item" id="proj">Projects</span>
-                    <ul class="proj-list" id="proj-list"> 
-                    </ul>
-                    </li>
-                </ul>
-            </nav>
-            <div id="main-body">
-                <img id="sort" src="Images/sort.svg">
-                <div id="task-card-container">
+      <header>
+        <img src="logo.png" />
+      </header>
+      <nav>
+        <ul id="nav-menu">
+          <li><span class="menu-item" id="home">Home</span></li>
+          <li><span class="menu-item" id="today">Today</span></li>
+          <li><span class="menu-item" id="week">Week</span></li>
+          <li>
+            <span class="menu-item" id="proj">Projects</span>
+            <ul class="proj-list" id="proj-list"></ul>
+          </li>
+        </ul>
+      </nav>
+      <div id="main-body">
+        <img id="sort" src="Images/sort.svg" />
+        <div id="task-card-container"></div>
+        <div id="add-button">+</div>
+      </div>
+    </div>
+    <!-- beginning of overlayed contents  -->
+    <div id="form-create">
+      <div id="form-title"></div>
+      <nav id="form-nav">
+        <ul id="form-menu">
+          <li>
+            <span class="form-menu-item" id="task-form-wrapper">
+              Create Task
+            </span>
+          </li>
+          <li>
+            <span class="form-menu-item" id="proj-form-wrapper">
+              Create Project
+            </span>
+          </li>
+        </ul>
+      </nav>
+      <div id="form-container">
+        <div class="form-wrapper" id="proj-form-wrapper">
+          <form action="index.html" method="post" id="proj-form">
+            <label for="proj-name">Project Name:</label>
+            <input
+              type="text"
+              id="proj-name"
+              placeholder="Uncategorized"
+              name="proj-name"
+            />
+            <div class="button-container">
+              <button type="submit" form="proj-form" value="submit">
+                Create
+              </button>
+              <button id="cancel" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div class="form-wrapper" id="task-form-wrapper">
+          <form action="index.html" method="post" id="task-form">
+            <label for="proj-name">Project Name:</label>
+            <input
+              type="text"
+              id="proj-name"
+              placeholder="Uncategorized"
+              name="proj-name"
+            />
 
-                </div>
-                <div id="add-button">
-                    +
-                </div>
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name" name="task-name" />
+
+            <label for="task-des">Task Description:</label>
+            <textarea id="task-des" name="task-des"></textarea>
+
+            <label for="due-date">Due Date:</label>
+            <input type="number" id="due-date" name="due-date" />
+
+            <label for="priority">Priotity:</label>
+            <select id="priority" name="priority">
+              <option value="1">High</option>
+              <option value="2">Medium</option>
+              <option value="3">Low</option>
+            </select>
+
+            <label for="done-status">Done:</label>
+            <input
+              type="checkbox"
+              id="done-status"
+              name="done-status"
+              value="done"
+            />
+            <div class="button-container">
+              <button form="task-form" type="submit" value="submit">
+                Create
+              </button>
+              <button id="cancel" type="button">Cancel</button>
             </div>
+          </form>
         </div>
-        <!-- beginning of overlayed contents  -->
-        <div id="form-create">
-            <div id="form-title"></div>
-            <nav id="form-nav">
-                <ul id="form-menu">
-                    <li><span class="form-menu-item" id="task-form">
-                        Create Task
-                    </span></li>
-                    <li><span class="form-menu-item" id="proj-form">
-                        Create Project
-                    </span></li>
-                </ul>
-            </nav>
-            <div id="form-container">
-                <div class="form-wrapper" id="proj-form">
-                    <form action="index.html" method="post" id="proj-form">
-                        <label for="proj-name">Project Name:</label>
-                        <input type="text" id="proj-name" placeholder="Uncategorized" name="proj-name">
-                    </form>
-                    <button class="submit" type="submit" for="proj-form">Create</button>
-                    <button class="cancel">Cancel</button>
-                </div>
-                <div class="form-wrapper" id="task-form">
-                    <form action="index.html" method="post" id="task-form">
-                        <label for="proj-name">Project Name:</label>
-                        <input type="text" id="proj-name" placeholder="Uncategorized" name="proj-name">
-                        
-                        
-                        <label for="task-name">Task Name:</label>
-                        <input type="text" id="task-name" name="task-name">
-                        
-                        <label for="task-des">Task Description:</label>
-                        <textarea id="task-des" name="task-des"></textarea>
-                        
-                        <label for="due-date">Due Date:</label>
-                        <input type="number" id="due-date" name="due-date">
-                        
-                        
-                        <label for="priority">Priotity:</label>
-                        <select id="priority" name="priority">
-                            <option value="1">High</option>
-                            <option value="2">Medium</option>
-                            <option value="3">Low</option>
-                        </select>
-                        
-                        <label for="done-status">Done:</label>
-                        <input type="checkbox" id="done-status" name="done-status" checked>
-                    </form>
-                    <button class="submit" type="submit" for="proj-form">Create</button>
-                    <button class="cancel">Cancel</button>
-                </div>
-            </div>
-        </div>
-        <div id="ask-consent">
-            <button id="yes">Yes</button>
-            <button id="no">No</button>
-        </div>
-    </body>
+      </div>
+    </div>
+    <div id="ask-consent">
+      <button id="yes">Yes</button>
+      <button id="no">No</button>
+    </div>
+  </body>
 </html>
