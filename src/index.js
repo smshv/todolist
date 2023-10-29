@@ -27,8 +27,9 @@ const menuHandler = (() => {
     if (has.call(getterMap, id)) {
       event = e;
       const [getterMethod, params] = getterMap[id];
+      renderer.params = { ...params };
       renderer.taskGetter = getterMethod;
-      renderer.renderTaskList(params);
+      renderer.renderTaskList();
     }
   }
   return { handleMenuEvent };
@@ -76,7 +77,7 @@ document.querySelector('#add-button').addEventListener('click', () => {
   overlayedContentRenderer.showOverlayedContent('#form-create');
   overlayedContentRenderer.showOverlayedForm();
 });
-document.querySelectorAll('#cancel').forEach((x) => {
+document.querySelectorAll('#cancel, #no, #close').forEach((x) => {
   x.addEventListener('click', () => {
     overlayedContentRenderer.hideOverlayedContent();
   });
@@ -94,4 +95,8 @@ document.querySelectorAll('form').forEach((form) => {
       formHandler[formId](e);
     });
   }
+});
+
+document.querySelector('button#yes').addEventListener('click', () => {
+  formHandler.hadleConsentForm();
 });

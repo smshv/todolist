@@ -60,12 +60,12 @@
               id="proj-name"
               placeholder="Uncategorized"
               name="proj-name"
-            />
+            >
             <div class="button-container">
-              <button type="submit" form="proj-form" value="submit">
+              <button class="form-button" type="submit" form="proj-form" value="submit">
                 Create
               </button>
-              <button id="cancel" type="button">Cancel</button>
+              <button class="form-button" id="cancel" type="button">Cancel</button>
             </div>
           </form>
         </div>
@@ -77,13 +77,13 @@
               id="proj-name"
               placeholder="Uncategorized"
               name="proj-name"
-            />
+            >
 
             <label for="task-name">Task Name:</label>
             <input type="text" id="task-name" name="task-name" />
 
-            <label for="task-des">Task Description:</label>
-            <textarea id="task-des" name="task-des"></textarea>
+            <label for="task-details">Task Description:</label>
+            <textarea id="task-details" name="task-details"></textarea>
 
             <label for="due-date">Due Date:</label>
             <input type="number" id="due-date" name="due-date" />
@@ -101,20 +101,68 @@
               id="done-status"
               name="done-status"
               value="done"
-            />
+            >
             <div class="button-container">
-              <button form="task-form" type="submit" value="submit">
+              <button class="form-button" form="task-form" type="submit" value="submit">
                 Create
               </button>
-              <button id="cancel" type="button">Cancel</button>
+              <button class="form-button" id="cancel" type="button">Cancel</button>
             </div>
           </form>
         </div>
       </div>
     </div>
+    <div class="form-wrapper" id="edit-form-wrapper">
+      <form action="index.html" method="post" id="edit-form">
+        <label for="proj-name">Project Name:</label>
+        <input
+          type="text"
+          id="proj-name"
+          placeholder="Uncategorized"
+          name="proj-name"
+        >
+
+        <label for="task-name">Task Name:</label>
+        <input type="text" id="task-name" name="task-name" />
+
+        <label for="task-details">Task Description:</label>
+        <textarea id="task-details" name="task-details"></textarea>
+
+        <label for="due-date">Due Date:</label>
+        <input type="number" id="due-date" name="due-date" />
+
+        <label for="priority">Priotity:</label>
+        <select id="priority" name="priority">
+          <option value="1">High</option>
+          <option value="2">Medium</option>
+          <option value="3">Low</option>
+        </select>
+
+        <label for="done-status">Done:</label>
+        <input
+          type="checkbox"
+          id="done-status"
+          name="done-status"
+          value="done"
+        >
+        <div class="button-container">
+          <button class="form-button" form="edit-form" type="submit" value="submit">
+            Submit
+          </button>
+          <button class="form-button" id="cancel" type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
     <div id="ask-consent">
-      <button id="yes">Yes</button>
-      <button id="no">No</button>
+      <p id="consent-msg">asdsadsa</p>
+      <div id="ask-button">
+        <button class="form-button" id="yes">Yes</button>
+        <button class="form-button" id="no">No</button>
+      </div>
+    </div>
+    <div id="task-details-container">
+      <p id="task-details"></p>
+      <button class="form-button" id="close">Close</button>
     </div>
   </body>
 </html>

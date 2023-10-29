@@ -1,10 +1,43 @@
-import overlayedContentRenderer from "./overlayedContentRenderer";
+import overlayedContentRenderer from './overlayedContentRenderer';
+import formHandler from './formHandler';
+import appFuncs from './applogics';
+import renderer from './renderDynamic';
+
+function deleteTask({ projName, taskId }) {
+  appFuncs.deleteTask({ projName, taskId });
+  overlayedContentRenderer.hideOverlayedContent();
+  renderer.renderTaskList();
+}
+
+function showTaskDetails({ projName, taskId }) {
+  document.querySelector('p#task-details').textContent = appFuncs.getTask(projName, taskId).taskDetails;
+  overlayedContentRenderer.showOverlayedContent('div#task-details-container');
+}
 
 export default function handleClick(e) {
   const elemClass = e.target.classList[0];
   switch (elemClass) {
-    case "edit-button":
-      overlayedContentRenderer.showOverlayedContent("div#task-form-wrapper");
+    case 'edit-button':
+      formHandler.setParams({
+        projName: e.target.parentElement.getAttribute('proj-name'),
+        taskId: e.target.parentElement.getAttribute('id'),
+      });
+      formHandler.fillTaskForm('#edit-form');
+      overlayedContentRenderer.showOverlayedContent('div#edit-form-wrapper');
+      break;
+    case 'delete-button':
+      document.querySelector('p#consent-msg').textContent = 'Do you really want to delete the task?';
+      overlayedContentRenderer.showOverlayedContent('div#ask-consent');
+      formHandler.setFuncToExecOnConsent(deleteTask, {
+        projName: e.target.parentElement.getAttribute('proj-name'),
+        taskId: e.target.parentElement.getAttribute('id'),
+      });
+      break;
+    case 'task-details':
+      showTaskDetails({
+        projName: e.target.parentElement.getAttribute('proj-name'),
+        taskId: Number(e.target.parentElement.getAttribute('id')),
+      });
       break;
     default:
       break;

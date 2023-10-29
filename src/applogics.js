@@ -4,12 +4,14 @@ const appFuncs = (() => {
   class ToDoTask {
     #dueDate;
 
-    constructor(title, description, projName, dueDate, priority, doneStatus) {
-      this.title = title;
-      this.description = description;
+    #priority;
+
+    constructor(taskName, taskDetails, projName, dueDate, priority, doneStatus) {
+      this.taskName = taskName;
+      this.taskDetails = taskDetails;
       this.projName = projName;
       this.#dueDate = dueDate;
-      this.priority = priority;
+      this.#priority = priority;
       this.doneStatus = doneStatus;
     }
 
@@ -21,8 +23,56 @@ const appFuncs = (() => {
       if (true) {
         this.#dueDate = newDueDate;
       } else {
-        alert("Invalid due date");
+        alert('Invalid due date');
       }
+    }
+
+    get priority() {
+      return this.#priority;
+    }
+
+    set priority(priorityVal) {
+      this.#priority = Number(priorityVal);
+    }
+
+    get 'task-name'() {
+      return this.taskName;
+    }
+
+    set 'task-name'(name) {
+      this.taskName = name;
+    }
+
+    get 'task-details'() {
+      return this.taskDetails;
+    }
+
+    set 'task-details'(details) {
+      this.taskDetails = details;
+    }
+
+    get 'proj-name'() {
+      return this.projName;
+    }
+
+    set 'proj-name'(name) {
+      this.projName = name;
+    }
+
+    get 'due-date'() {
+      return this.dueDate;
+    }
+
+    set 'due-date'(date) {
+      this.dueDate = date;
+    }
+
+    get 'done-status'() {
+      return this.doneStatus;
+    }
+
+    set 'done-status'(status) {
+      this.doneStatus = (status === 'done');
     }
   }
 
@@ -34,30 +84,20 @@ const appFuncs = (() => {
     priority,
     doneStatus = false,
   ) {
+    const newTask = new ToDoTask(
+      title,
+      description,
+      projName,
+      dueDate,
+      priority,
+      doneStatus,
+    );
     if (projects.has(projName)) {
       projects
         .get(projName)
-        .push(
-          new ToDoTask(
-            title,
-            description,
-            projName,
-            dueDate,
-            priority,
-            doneStatus,
-          ),
-        );
+        .push(newTask);
     } else {
-      projects.set(projName, [
-        new ToDoTask(
-          title,
-          description,
-          projName,
-          dueDate,
-          priority,
-          doneStatus,
-        ),
-      ]);
+      projects.set(projName, [newTask]);
     }
   }
 
@@ -81,8 +121,8 @@ const appFuncs = (() => {
     }
   }
 
-  function deleteTask(project, taskIndex) {
-    project.splice(taskIndex, 1);
+  function deleteTask({ projName, taskId }) {
+    projects.get(projName).splice(taskId, 1);
   }
 
   function heapify(inputList, bound, ind) {
@@ -130,7 +170,9 @@ const appFuncs = (() => {
       .map((task, id) => [task, id]);
     return params.isSorted ? sortByDueDate(tasksList) : tasksList;
   }
-
+  function getTask(projName, taskId) {
+    return projects.get(projName)[taskId];
+  }
   return {
     createToDoTask,
     getProjectList,
@@ -139,6 +181,7 @@ const appFuncs = (() => {
     deleteTask,
     getAllTasks,
     getTaskByProject,
+    getTask,
   };
 })();
 

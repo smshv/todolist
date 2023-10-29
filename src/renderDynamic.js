@@ -24,14 +24,13 @@ function createDomElem(
 
 const renderer = (() => {
   function renderProjCard(task, id, parent, currentCard = null) {
-    const card =
-      currentCard ||
-      createDomElem(
-        "div",
-        ["task-card"],
+    const card = currentCard
+      || createDomElem(
+        'div',
+        ['task-card'],
         [
-          ["proj-name", task.projName],
-          ["id", id],
+          ['proj-name', task.projName],
+          ['id', id],
         ],
         null,
         null,
@@ -39,47 +38,47 @@ const renderer = (() => {
     card.classList.add(`priority_${task.priority.toString()}`);
 
     if (task.doneStatus) {
-      card.classList.add("done");
+      card.classList.add('done');
     }
     card.appendChild(
       createDomElem(
-        "div",
-        ["status", task.doneStatus ? "done" : "not-done"],
+        'div',
+        ['status', task.doneStatus ? 'done' : 'not-done'],
         [],
-        "<span>√</span>",
+        '<span>√</span>',
         null,
       ),
     );
     card.appendChild(
-      createDomElem("span", ["task-header"], [], null, task.title),
+      createDomElem('span', ['task-header'], [], null, task.taskName),
     );
     card.appendChild(
       createDomElem(
-        "span",
-        ["proj-name"],
+        'span',
+        ['proj-name'],
         [],
         null,
         `Project: ${task.projName}`,
       ),
     );
     card.appendChild(
-      createDomElem("button", ["task-details"], [], null, "Details"),
+      createDomElem('button', ['task-details'], [], null, 'Details'),
     );
-    card.appendChild(createDomElem("p", ["due-date"], [], null, task.dueDate));
+    card.appendChild(createDomElem('p', ['due-date'], [], null, task.dueDate));
     card.appendChild(
       createDomElem(
-        "img",
-        ["edit-button"],
-        [["src", "Images/edit.svg"]],
+        'img',
+        ['edit-button'],
+        [['src', 'Images/edit.svg']],
         null,
         null,
       ),
     );
     card.appendChild(
       createDomElem(
-        "img",
-        ["delete-button"],
-        [["src", "Images/delete.svg"]],
+        'img',
+        ['delete-button'],
+        [['src', 'Images/delete.svg']],
         null,
         null,
       ),
@@ -87,29 +86,29 @@ const renderer = (() => {
     parent.appendChild(card);
   }
 
-  function renderTaskList(params) {
-    const mainBody = document.querySelector("#task-card-container");
+  function renderTaskList() {
+    const mainBody = document.querySelector('#task-card-container');
     while (mainBody.lastElementChild) {
       mainBody.removeChild(mainBody.lastElementChild);
     }
-    this.taskGetter({ ...this.params, ...params }).forEach((task) => {
+    this.taskGetter(this.params).forEach((task) => {
       renderProjCard(task[0], task[1], mainBody);
     });
   }
 
   function renderProjList(projNames) {
-    const projList = document.querySelector(".proj-list");
+    const projList = document.querySelector('.proj-list');
     while (projList.lastElementChild) {
       projList.removeChild(projList.lastElementChild);
     }
     projNames.forEach((projName) => {
       projList.appendChild(
         createDomElem(
-          "li",
-          ["menu-item"],
+          'li',
+          ['menu-item'],
           [
-            ["id", "proj-list-item"],
-            ["proj-name", projName],
+            ['id', 'proj-list-item'],
+            ['proj-name', projName],
           ],
           null,
           projName,
