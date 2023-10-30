@@ -186,18 +186,13 @@ textarea {
   align-items: center;
   justify-content: center;
 }
-#form-create {
-  width: 0px;
-  height: 0px;
-  border: 2px solid gray;
-  visibility: hidden;
-  display: block;
-  overflow: hidden;
+#create-container {
+  display: none;
 }
-#form-create.active {
-  width: 650px;
-  height: 550px;
-  visibility: visible;
+#create-container.active {
+  width: 680px;
+  height: 580px;
+  border: 2px solid gray;
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-auto-rows: 80px 1fr;
@@ -217,30 +212,36 @@ textarea {
   font-size: 1.3rem;
   font-weight: 500;
 }
-#form-container {
-  grid-column: 2 / 3;
+#form-container{
   background-color: white;
-  position: relative;
+  grid-column: 2 / 3;
   display: grid;
 }
-.form-wrapper {
-  /*position: absolute;
-    top: 0px;
-    left: 0px;*/
-  grid-row: 1 / 2;
+.create-form {
   grid-column: 1 / 2;
-  visibility: hidden;
-  padding: 15px 30px;
+  grid-row: 1 / 2;
+  background-color: white;
+  position: relative;
+  display: none;
+  margin: 15px 30px auto 30px;
   font-size: 1.2rem;
 }
-.form-wrapper.active {
-  /*position: relative;*/
-  visibility: visible;
-  background: 2px solid gray;
-  background-color: white;
-}
 
-form {
+#edit-form-wrapper{
+  width: 480px;
+  height: 500px;
+  display: none;
+  background-color: white;
+  border: 2px solid #504f4f;
+  font-size: 1.2rem;
+}
+#edit-form-wrapper.active{
+  display: block;
+}
+#edit-form{
+  margin: 15px 30px auto 30px;
+}
+#edit-form, .create-form.active{ 
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 10px;

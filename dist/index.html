@@ -9,8 +9,132 @@
   <body>
     <div id="content">
       <div id="container-overlayed">
-        <div id="mini-window-container">
-          <!-- Place holder for overlayed contents -->
+        <!-- Place holder for overlayed contents -->
+        <div id="create-container">
+          <div id="form-title"></div>
+          <nav id="form-nav">
+            <ul id="form-menu">
+              <li>
+                <span class="form-menu-item" formId="task-form">
+                  Create Task
+                </span>
+              </li>
+              <li>
+                <span class="form-menu-item" formId="proj-form">
+                  Create Project
+                </span>
+              </li>
+            </ul>
+          </nav>
+          <div id="form-container">
+            <form action="index.html" class="create-form" method="post" id="proj-form">
+              <label for="proj-name">Project Name:</label>
+              <input
+                type="text"
+                id="proj-name"
+                placeholder="Uncategorized"
+                name="proj-name"
+              >
+              <div class="button-container">
+                <button class="form-button" type="submit" form="proj-form" value="submit">
+                  Create
+                </button>
+                <button class="form-button" id="cancel" type="button">Cancel</button>
+              </div>
+            </form>
+
+            <form action="index.html" class="create-form" method="post" id="task-form">
+              <label for="proj-name">Project Name:</label>
+              <input
+                type="text"
+                id="proj-name"
+                placeholder="Uncategorized"
+                name="proj-name"
+              >
+  
+              <label for="task-name">Task Name:</label>
+              <input type="text" id="task-name" name="task-name" />
+  
+              <label for="task-details">Task Description:</label>
+              <textarea id="task-details" name="task-details"></textarea>
+  
+              <label for="due-date">Due Date:</label>
+              <input type="number" id="due-date" name="due-date" />
+  
+              <label for="priority">Priotity:</label>
+              <select id="priority" name="priority">
+                <option value="1">High</option>
+                <option value="2">Medium</option>
+                <option value="3">Low</option>
+              </select>
+  
+              <label for="done-status">Done:</label>
+              <input
+                type="checkbox"
+                id="done-status"
+                name="done-status"
+                value="done"
+              >
+              <div class="button-container">
+                <button class="form-button" form="task-form" type="submit" value="submit">
+                  Create
+                </button>
+                <button class="form-button" id="cancel" type="button">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div id="edit-form-wrapper">
+          <form action="index.html" method="post" id="edit-form">
+            <label for="proj-name">Project Name:</label>
+            <input
+              type="text"
+              id="proj-name"
+              placeholder="Uncategorized"
+              name="proj-name"
+            >
+    
+            <label for="task-name">Task Name:</label>
+            <input type="text" id="task-name" name="task-name" />
+    
+            <label for="task-details">Task Description:</label>
+            <textarea id="task-details" name="task-details"></textarea>
+    
+            <label for="due-date">Due Date:</label>
+            <input type="number" id="due-date" name="due-date" />
+    
+            <label for="priority">Priotity:</label>
+            <select id="priority" name="priority">
+              <option value="1">High</option>
+              <option value="2">Medium</option>
+              <option value="3">Low</option>
+            </select>
+    
+            <label for="done-status">Done:</label>
+            <input
+              type="checkbox"
+              id="done-status"
+              name="done-status"
+              value="done"
+            >
+            <div class="button-container">
+              <button class="form-button" form="edit-form" type="submit" value="submit">
+                Submit
+              </button>
+              <button class="form-button" id="cancel" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+        <div id="ask-consent">
+          <p id="consent-msg">asdsadsa</p>
+          <div id="ask-button">
+            <button class="form-button" id="yes">Yes</button>
+            <button class="form-button" id="no">No</button>
+          </div>
+        </div>
+        <div id="task-details-container">
+          <p id="task-details"></p>
+          <button class="form-button" id="close">Close</button>
         </div>
       </div>
 
@@ -35,134 +159,8 @@
       </div>
     </div>
     <!-- beginning of overlayed contents  -->
-    <div id="form-create">
-      <div id="form-title"></div>
-      <nav id="form-nav">
-        <ul id="form-menu">
-          <li>
-            <span class="form-menu-item" id="task-form-wrapper">
-              Create Task
-            </span>
-          </li>
-          <li>
-            <span class="form-menu-item" id="proj-form-wrapper">
-              Create Project
-            </span>
-          </li>
-        </ul>
-      </nav>
-      <div id="form-container">
-        <div class="form-wrapper" id="proj-form-wrapper">
-          <form action="index.html" method="post" id="proj-form">
-            <label for="proj-name">Project Name:</label>
-            <input
-              type="text"
-              id="proj-name"
-              placeholder="Uncategorized"
-              name="proj-name"
-            >
-            <div class="button-container">
-              <button class="form-button" type="submit" form="proj-form" value="submit">
-                Create
-              </button>
-              <button class="form-button" id="cancel" type="button">Cancel</button>
-            </div>
-          </form>
-        </div>
-        <div class="form-wrapper" id="task-form-wrapper">
-          <form action="index.html" method="post" id="task-form">
-            <label for="proj-name">Project Name:</label>
-            <input
-              type="text"
-              id="proj-name"
-              placeholder="Uncategorized"
-              name="proj-name"
-            >
-
-            <label for="task-name">Task Name:</label>
-            <input type="text" id="task-name" name="task-name" />
-
-            <label for="task-details">Task Description:</label>
-            <textarea id="task-details" name="task-details"></textarea>
-
-            <label for="due-date">Due Date:</label>
-            <input type="number" id="due-date" name="due-date" />
-
-            <label for="priority">Priotity:</label>
-            <select id="priority" name="priority">
-              <option value="1">High</option>
-              <option value="2">Medium</option>
-              <option value="3">Low</option>
-            </select>
-
-            <label for="done-status">Done:</label>
-            <input
-              type="checkbox"
-              id="done-status"
-              name="done-status"
-              value="done"
-            >
-            <div class="button-container">
-              <button class="form-button" form="task-form" type="submit" value="submit">
-                Create
-              </button>
-              <button class="form-button" id="cancel" type="button">Cancel</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+    
     <div class="form-wrapper" id="edit-form-wrapper">
-      <form action="index.html" method="post" id="edit-form">
-        <label for="proj-name">Project Name:</label>
-        <input
-          type="text"
-          id="proj-name"
-          placeholder="Uncategorized"
-          name="proj-name"
-        >
-
-        <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" name="task-name" />
-
-        <label for="task-details">Task Description:</label>
-        <textarea id="task-details" name="task-details"></textarea>
-
-        <label for="due-date">Due Date:</label>
-        <input type="number" id="due-date" name="due-date" />
-
-        <label for="priority">Priotity:</label>
-        <select id="priority" name="priority">
-          <option value="1">High</option>
-          <option value="2">Medium</option>
-          <option value="3">Low</option>
-        </select>
-
-        <label for="done-status">Done:</label>
-        <input
-          type="checkbox"
-          id="done-status"
-          name="done-status"
-          value="done"
-        >
-        <div class="button-container">
-          <button class="form-button" form="edit-form" type="submit" value="submit">
-            Submit
-          </button>
-          <button class="form-button" id="cancel" type="button">Cancel</button>
-        </div>
-      </form>
-    </div>
-    <div id="ask-consent">
-      <p id="consent-msg">asdsadsa</p>
-      <div id="ask-button">
-        <button class="form-button" id="yes">Yes</button>
-        <button class="form-button" id="no">No</button>
-      </div>
-    </div>
-    <div id="task-details-container">
-      <p id="task-details"></p>
-      <button class="form-button" id="close">Close</button>
     </div>
   </body>
 </html>

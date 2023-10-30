@@ -130,10 +130,10 @@ const appFuncs = (() => {
     const left = ind * 2 + 1;
     const right = ind * 2 + 2;
     const List = inputList;
-    if (left < bound && List[left].dueDate > List[largest].dueDate) {
+    if (left < bound && Number(List[left].dueDate) > Number(List[largest].dueDate)) {
       largest = left;
     }
-    if (right < bound && List[right].dueDate > List[largest].dueDate) {
+    if (right < bound && Number(List[right].dueDate) > Number(List[largest].dueDate)) {
       largest = right;
     }
     if (largest !== ind) {

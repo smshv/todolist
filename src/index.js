@@ -38,8 +38,8 @@ const menuHandler = (() => {
 appFuncs.createProject('test1');
 appFuncs.createProject('test2');
 appFuncs.createToDoTask('task1', 'adas', 'test1', '5', 1, true);
-appFuncs.createToDoTask('task2', 'adas', 'test1', '5', 2, true);
-appFuncs.createToDoTask('task3', 'adas', 'test2', '5', 3, false);
+appFuncs.createToDoTask('task2', 'adas', 'test1', '4', 2, true);
+appFuncs.createToDoTask('task3', 'adas', 'test2', '3', 3, false);
 document.querySelector('#proj').addEventListener('mouseover', (e) => {
   e.currentTarget.nextElementSibling.style.visibility = 'visible';
   renderer.renderProjList(appFuncs.getProjectList());
@@ -69,12 +69,12 @@ renderer.renderTaskList();
 
 document.querySelectorAll('.form-menu-item').forEach((x) => {
   x.addEventListener('click', (e) => {
-    overlayedContentRenderer.showOverlayedForm(e.currentTarget.getAttribute('id'));
+    overlayedContentRenderer.showOverlayedForm(e.currentTarget.getAttribute('formId'));
   });
 });
 
 document.querySelector('#add-button').addEventListener('click', () => {
-  overlayedContentRenderer.showOverlayedContent('#form-create');
+  overlayedContentRenderer.showOverlayedContent('#create-container');
   overlayedContentRenderer.showOverlayedForm();
 });
 document.querySelectorAll('#cancel, #no, #close').forEach((x) => {
