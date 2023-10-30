@@ -125,5 +125,5 @@ const renderer = (() => {
     renderProjList,
   };
 })();
-
-export default renderer;
+Object.defineProperty(renderer, 'params', { enumerable: false }); // prevent other modules to alter this
+export default renderer; // unless specifically needed which is only by sort button

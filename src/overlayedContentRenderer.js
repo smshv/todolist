@@ -6,8 +6,16 @@ const overlayedContentRenderer = (() => {
     'proj-form': '// Create Project',
   };
   function showOverlayedContent(id) {
-    document.querySelector('#container-overlayed').style.visibility = 'visible';
-    const overlayedContent = document.querySelector(id);
+    const container = document.querySelector('#container-overlayed');
+    if (lastAlteredElement) {
+      lastAlteredElement.classList.remove('active');
+      const { children } = lastAlteredElement;
+      for (let i = 0; i < children.length; i += 1) {
+        children[i].classList.remove('active');
+      }
+    }
+    container.style.visibility = 'visible';
+    const overlayedContent = container.querySelector(id);
     lastAlteredElement = overlayedContent;
     overlayedContent.classList.add('active');
     // document
@@ -19,8 +27,7 @@ const overlayedContentRenderer = (() => {
     document.querySelectorAll('.create-form').forEach((x) => {
       x.classList.remove('active');
     });
-    lastAlteredElement = document.querySelector(`form#${formId}`);
-    lastAlteredElement.classList.add('active');
+    document.querySelector(`form#${formId}`).classList.add('active');
     document.querySelectorAll('.form-menu-item').forEach((x) => {
       x.classList.remove('selected');
     });

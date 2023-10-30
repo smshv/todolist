@@ -155,7 +155,7 @@ const appFuncs = (() => {
   function sortByDueDate(taskstoDo) {
     heapSort(taskstoDo);
   }
-  function getAllTasks(params) {
+  function getAllTasks(params) { // does not take params. Added for consistency
     const tasksList = [];
     projects.forEach((tasksToDo) => {
       for (let i = 0; i < tasksToDo.length; i += 1) {

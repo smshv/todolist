@@ -27,7 +27,9 @@ const menuHandler = (() => {
     if (has.call(getterMap, id)) {
       event = e;
       const [getterMethod, params] = getterMap[id];
-      renderer.params = { ...params };
+      Object.entries(params).forEach(([key, value]) => {
+        renderer.params[key] = value;
+      });
       renderer.taskGetter = getterMethod;
       renderer.renderTaskList();
     }
