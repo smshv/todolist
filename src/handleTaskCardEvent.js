@@ -1,13 +1,6 @@
 import overlayedContentRenderer from './overlayedContentRenderer';
 import formHandler from './formHandler';
 import appFuncs from './applogics';
-import renderer from './renderDynamic';
-
-function deleteTask({ projName, taskId }) {
-  appFuncs.deleteTask({ projName, taskId });
-  overlayedContentRenderer.hideOverlayedContent();
-  renderer.renderTaskList();
-}
 
 function showTaskDetails({ projName, taskId }) {
   document.querySelector('p#task-details').textContent = appFuncs.getTask(projName, taskId).taskDetails;
@@ -28,7 +21,7 @@ export default function handleClick(e) {
     case 'delete-button':
       document.querySelector('p#consent-msg').textContent = 'Do you really want to delete the task?';
       overlayedContentRenderer.showOverlayedContent('div#ask-consent');
-      formHandler.setFuncToExecOnConsent(deleteTask, {
+      formHandler.setFuncToExecOnConsent(appFuncs.deleteTask, {
         projName: e.target.parentElement.getAttribute('proj-name'),
         taskId: e.target.parentElement.getAttribute('id'),
       });

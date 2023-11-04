@@ -42,6 +42,7 @@ nav li {
 .form-menu-item:hover::before {
   color: #991b1b;
   content: "// ";
+  cursor: pointer;
 }
 
 #sort {
@@ -54,6 +55,7 @@ nav li {
 }
 #sort:hover {
   border-color: #3ba395;
+  cursor: pointer;
   filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg)
     brightness(94%) contrast(82%);
 }
@@ -61,6 +63,7 @@ nav li {
   box-shadow: inset -1px -1px 2px #504f4f;
 }
 #sort.sorted:hover {
+  cursor: pointer;
   box-shadow: inset -1px -1px 2px #68cec1;
 }
 #main-body {
@@ -155,6 +158,7 @@ nav li {
     brightness(107%) contrast(91%);
 }
 .edit-button:hover {
+  cursor: pointer;
   filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg)
     brightness(94%) contrast(82%);
 }
@@ -164,6 +168,7 @@ nav li {
     brightness(107%) contrast(91%);
 }
 .delete-button:hover {
+  cursor: pointer;
   filter: invert(57%) sepia(17%) saturate(1371%) hue-rotate(122deg)
     brightness(94%) contrast(82%);
 }
@@ -339,18 +344,34 @@ input#done-status {
   border: 2px solid #848383;
 }
 
-#add-button {
+#main-buttons-container{
+  display: flex;
+  justify-content: space-between;
+}
+.main-button {
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  background-color: #3ba395;
   color: white;
   font-weight: 800;
   font-size: 40px;
-  margin-left: auto;
-  margin-right: 0;
   margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#add-button{
+  background-color: #3ba395;
+  padding-right: 0px;
+  padding-left: auto;
+}
+#delete-button{
+  background-color: #991b1b;
+  visibility: hidden;
+  padding-left: 0;
+  padding-right: auto;
+}
+
+button:hover, #add-button:hover, #delete-button:hover{
+  cursor: pointer;  
 }

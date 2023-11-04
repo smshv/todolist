@@ -113,11 +113,12 @@ const appFuncs = (() => {
     }
   }
 
-  function deleteProject(projectName) {
-    if (projects.has(projectName)) {
-      projects.delete(projectName);
+  function deleteProject(projName) {
+    // console.log(projectName);
+    if (projects.has(projName)) {
+      projects.delete(projName);
     } else {
-      alert(`${projectName} does not exist`);
+      alert(`${projName} does not exist`);
     }
   }
 
@@ -130,6 +131,7 @@ const appFuncs = (() => {
     const left = ind * 2 + 1;
     const right = ind * 2 + 2;
     const List = inputList;
+
     if (left < bound && Number(List[left].dueDate) > Number(List[largest].dueDate)) {
       largest = left;
     }
@@ -143,10 +145,10 @@ const appFuncs = (() => {
   }
   function heapSort(inputList) {
     const List = inputList;
-    for (let i = 0; i < Math.floor(List.length / 2) - 1; i += 1) {
+    for (let i = 0; i < Math.ceil(List.length / 2) - 1; i += 1) {
       heapify(List, List.length, i);
     }
-    for (let i = List.length - 1; i > 0; i = -1) {
+    for (let i = List.length - 1; i > 0; i -= 1) {
       [List[i], List[0]] = [List[0], List[i]];
       heapify(List, i, 0);
     }

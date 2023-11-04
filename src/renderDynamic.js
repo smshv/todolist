@@ -91,6 +91,8 @@ const renderer = (() => {
     while (mainBody.lastElementChild) {
       mainBody.removeChild(mainBody.lastElementChild);
     }
+    // console.log(this.taskGetter(this.params));
+    document.querySelector('#delete-button').style.visibility = this.params.showDeleteButton ? 'visible' : 'hidden';
     this.taskGetter(this.params).forEach((task) => {
       renderProjCard(task[0], task[1], mainBody);
     });
@@ -117,12 +119,24 @@ const renderer = (() => {
     });
   }
 
+  function resetRenderer(taskGetter, params) {
+    const keys = Object.keys(this.params);
+    for (let i = 0; i < keys.length; i += 1) {
+      delete this.params[keys[i]];
+    }
+    Object.entries(params).forEach(([key, value]) => {
+      this.params[key] = value;
+    });
+    renderer.taskGetter = taskGetter;
+  }
+
   return {
     taskGetter: null,
     params: { isSorted: false },
     renderProjCard,
     renderTaskList,
     renderProjList,
+    resetRenderer,
   };
 })();
 Object.defineProperty(renderer, 'params', { enumerable: false }); // prevent other modules to alter this

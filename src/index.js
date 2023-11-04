@@ -8,15 +8,16 @@ import formHandler from './formHandler';
 const menuHandler = (() => {
   let event;
   const getterMap = {
-    home: [appFuncs.getAllTasks, {}], // 0:method, 1:params
-    today: [appFuncs.getAllTasks, {}],
-    week: [appFuncs.getAllTasks, {}],
+    home: [appFuncs.getAllTasks, { showDeleteButton: false }], // 0:method, 1:params
+    today: [appFuncs.getAllTasks, { showDeleteButton: false }],
+    week: [appFuncs.getAllTasks, { showDeleteButton: false }],
     'proj-list-item': [
       appFuncs.getTaskByProject,
       {
         get projName() {
           return event.target.getAttribute('proj-name');
         },
+        showDeleteButton: true,
       },
     ],
   };
@@ -39,8 +40,8 @@ const menuHandler = (() => {
 
 appFuncs.createProject('test1');
 appFuncs.createProject('test2');
-appFuncs.createToDoTask('task1', 'adas', 'test1', '5', 1, true);
-appFuncs.createToDoTask('task2', 'adas', 'test1', '4', 2, true);
+appFuncs.createToDoTask('task1', 'adas', 'test1', '4', 1, true);
+appFuncs.createToDoTask('task2', 'adas', 'test1', '5', 2, true);
 appFuncs.createToDoTask('task3', 'adas', 'test2', '3', 3, false);
 document.querySelector('#proj').addEventListener('mouseover', (e) => {
   e.currentTarget.nextElementSibling.style.visibility = 'visible';
@@ -65,6 +66,8 @@ document.querySelector('#sort').addEventListener('click', (e) => {
     e.currentTarget.classList.add('sorted');
   }
   renderer.params.isSorted = !renderer.params.isSorted;
+  renderer.taskGetter = appFuncs.getAllTasks;
+  renderer.renderTaskList();
 });
 renderer.taskGetter = appFuncs.getAllTasks;
 renderer.renderTaskList();
@@ -79,6 +82,19 @@ document.querySelector('#add-button').addEventListener('click', () => {
   overlayedContentRenderer.showOverlayedContent('#create-container');
   overlayedContentRenderer.showOverlayedForm();
 });
+
+document.querySelector('#delete-button').addEventListener('click', () => {
+  document.querySelector('p#consent-msg').textContent = 'Do you really want to delete the project?';
+  overlayedContentRenderer.showOverlayedContent('div#ask-consent');
+  formHandler.setFuncToExecOnConsent(
+    ({ projName }) => {
+      appFuncs.deleteProject(projName);
+      renderer.resetRenderer(appFuncs.getAllTasks, {});
+    },
+    { projName: renderer.params.projName },
+  );
+});
+
 document.querySelectorAll('#cancel, #no, #close').forEach((x) => {
   x.addEventListener('click', () => {
     overlayedContentRenderer.hideOverlayedContent();
@@ -101,4 +117,5 @@ document.querySelectorAll('form').forEach((form) => {
 
 document.querySelector('button#yes').addEventListener('click', () => {
   formHandler.hadleConsentForm();
+  overlayedContentRenderer.hideOverlayedContent();
 });

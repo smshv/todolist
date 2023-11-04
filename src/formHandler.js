@@ -57,6 +57,7 @@ const formHandler = (() => {
   }
   function hadleConsentForm() {
     funcToExecOnConsent(params);
+    renderer.renderTaskList();
   }
   function setFuncToExecOnConsent(func, passedParams) {
     funcToExecOnConsent = func;
