@@ -85,6 +85,7 @@ nav li {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  font-size: 1.2rem;
 }
 .task-card {
   display: flex;
@@ -130,10 +131,12 @@ nav li {
 }
 .task-header {
   font-weight: 300;
+  color: #991b1b;
 }
 .proj-name {
   font-weight: 300;
   margin-right: 150px;
+  color: #991b1b;
 }
 .task-details {
   margin-left: 150px;
@@ -147,6 +150,9 @@ nav li {
 .task-details:hover {
   background-color: #3ba395;
   color: white;
+}
+.due-date{
+  color: #991b1b;
 }
 .task-card {
   height: 50px;

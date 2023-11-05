@@ -126,37 +126,44 @@ const appFuncs = (() => {
     projects.get(projName).splice(taskId, 1);
   }
 
-  function heapify(inputList, bound, ind) {
+  function heapify(inputList, bound, ind, currentIntDate) {
     let largest = ind;
     const left = ind * 2 + 1;
     const right = ind * 2 + 2;
     const List = inputList;
+    let largestIntDate = new Date(List[largest][0].dueDate).getTime() - currentIntDate;
+    const leftIntDate = left < bound
+      ? new Date(List[left][0].dueDate).getTime() - currentIntDate : null;
+    const rightIntDate = right < bound
+      ? new Date(List[right][0].dueDate).getTime() - currentIntDate : null;
 
-    if (left < bound && Number(List[left][0].dueDate) > Number(List[largest][0].dueDate)) {
+    if (leftIntDate && leftIntDate > largestIntDate) {
       largest = left;
+      largestIntDate = leftIntDate;
     }
-    if (right < bound && Number(List[right][0].dueDate) > Number(List[largest][0].dueDate)) {
+    if (rightIntDate < bound && rightIntDate > largestIntDate) {
       largest = right;
     }
     if (largest !== ind) {
       [List[ind], List[largest]] = [List[largest], List[ind]];
-      heapify(List, bound, largest);
+      heapify(List, bound, largest, currentIntDate);
     }
   }
-  function heapSort(inputList) {
+  function heapSort(inputList, currentIntDate) {
     const List = inputList;
     for (let i = Math.floor(List.length / 2) - 1; i >= 0; i -= 1) {
-      heapify(List, List.length, i);
+      heapify(List, List.length, i, currentIntDate);
     }
 
     for (let i = List.length - 1; i > 0; i -= 1) {
       [List[i], List[0]] = [List[0], List[i]];
-      heapify(List, i, 0);
+      heapify(List, i, 0, currentIntDate);
     }
   }
 
   function sortByDueDate(taskstoDo) {
-    heapSort(taskstoDo);
+    const currentIntDate = new Date(new Date().toISOString().split('T')[0]).getTime();
+    heapSort(taskstoDo, currentIntDate);
     return taskstoDo;
   }
   function getAllTasks(params) { // does not take params. Added for consistency

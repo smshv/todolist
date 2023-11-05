@@ -5,6 +5,10 @@ import handleClick from './handleTaskCardEvent';
 import overlayedContentRenderer from './overlayedContentRenderer';
 import formHandler from './formHandler';
 
+document.querySelectorAll('input[type=date]').forEach((inputField) => {
+  inputField.setAttribute('min', new Date().toISOString().split('T')[0]);
+});
+
 const menuHandler = (() => {
   let event;
   const getterMap = {
@@ -40,9 +44,9 @@ const menuHandler = (() => {
 
 appFuncs.createProject('test1');
 appFuncs.createProject('test2');
-appFuncs.createToDoTask('task1', 'adas', 'test1', '4', 1, true);
-appFuncs.createToDoTask('task2', 'adas', 'test1', '5', 2, true);
-appFuncs.createToDoTask('task3', 'adas', 'test2', '3', 3, false);
+appFuncs.createToDoTask('task1', 'adas', 'test1', '2023-11-17', 1, true);
+appFuncs.createToDoTask('task2', 'adas', 'test1', '2023-12-05', 2, true);
+appFuncs.createToDoTask('task3', 'adas', 'test2', '2023-11-23', 3, false);
 document.querySelector('#proj').addEventListener('mouseover', (e) => {
   e.currentTarget.nextElementSibling.style.visibility = 'visible';
   renderer.renderProjList(appFuncs.getProjectList());

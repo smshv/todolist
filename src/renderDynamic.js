@@ -64,7 +64,7 @@ const renderer = (() => {
     card.appendChild(
       createDomElem('button', ['task-details'], [], null, 'Details'),
     );
-    card.appendChild(createDomElem('p', ['due-date'], [], null, task.dueDate));
+    card.appendChild(createDomElem('p', ['due-date'], [], null, `Due: ${task.dueDate}`));
     card.appendChild(
       createDomElem(
         'img',
