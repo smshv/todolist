@@ -66,7 +66,6 @@ document.querySelector('#sort').addEventListener('click', (e) => {
     e.currentTarget.classList.add('sorted');
   }
   renderer.params.isSorted = !renderer.params.isSorted;
-  renderer.taskGetter = appFuncs.getAllTasks;
   renderer.renderTaskList();
 });
 renderer.taskGetter = appFuncs.getAllTasks;

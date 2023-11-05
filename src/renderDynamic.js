@@ -122,6 +122,7 @@ const renderer = (() => {
   function resetRenderer(taskGetter, params) {
     const keys = Object.keys(this.params);
     for (let i = 0; i < keys.length; i += 1) {
+      console.log(keys[i]);
       delete this.params[keys[i]];
     }
     Object.entries(params).forEach(([key, value]) => {
@@ -139,5 +140,5 @@ const renderer = (() => {
     resetRenderer,
   };
 })();
-Object.defineProperty(renderer, 'params', { enumerable: false }); // prevent other modules to alter this
+Object.defineProperty(renderer.params, 'isSorted', { enumerable: false }); // prevent other modules to alter this
 export default renderer; // unless specifically needed which is only by sort button

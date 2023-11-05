@@ -132,10 +132,10 @@ const appFuncs = (() => {
     const right = ind * 2 + 2;
     const List = inputList;
 
-    if (left < bound && Number(List[left].dueDate) > Number(List[largest].dueDate)) {
+    if (left < bound && Number(List[left][0].dueDate) > Number(List[largest][0].dueDate)) {
       largest = left;
     }
-    if (right < bound && Number(List[right].dueDate) > Number(List[largest].dueDate)) {
+    if (right < bound && Number(List[right][0].dueDate) > Number(List[largest][0].dueDate)) {
       largest = right;
     }
     if (largest !== ind) {
@@ -145,9 +145,10 @@ const appFuncs = (() => {
   }
   function heapSort(inputList) {
     const List = inputList;
-    for (let i = 0; i < Math.ceil(List.length / 2) - 1; i += 1) {
+    for (let i = Math.floor(List.length / 2) - 1; i >= 0; i -= 1) {
       heapify(List, List.length, i);
     }
+
     for (let i = List.length - 1; i > 0; i -= 1) {
       [List[i], List[0]] = [List[0], List[i]];
       heapify(List, i, 0);
@@ -156,6 +157,7 @@ const appFuncs = (() => {
 
   function sortByDueDate(taskstoDo) {
     heapSort(taskstoDo);
+    return taskstoDo;
   }
   function getAllTasks(params) { // does not take params. Added for consistency
     const tasksList = [];
