@@ -13,8 +13,8 @@ const menuHandler = (() => {
   let event;
   const getterMap = {
     home: [appFuncs.getAllTasks, { showDeleteButton: false }], // 0:method, 1:params
-    today: [appFuncs.getAllTasks, { showDeleteButton: false }],
-    week: [appFuncs.getAllTasks, { showDeleteButton: false }],
+    today: [appFuncs.getTaskByDays, { showDeleteButton: false, daysRemaining:0 }],
+    week: [appFuncs.getTaskByDays, { showDeleteButton: false, daysRemaining:6 }],
     'proj-list-item': [
       appFuncs.getTaskByProject,
       {
@@ -41,12 +41,13 @@ const menuHandler = (() => {
   }
   return { handleMenuEvent };
 })();
-
+/*
 appFuncs.createProject('test1');
 appFuncs.createProject('test2');
-appFuncs.createToDoTask('task1', 'adas', 'test1', '2023-11-17', 1, true);
-appFuncs.createToDoTask('task2', 'adas', 'test1', '2023-12-05', 2, true);
-appFuncs.createToDoTask('task3', 'adas', 'test2', '2023-11-23', 3, false);
+appFuncs.createToDoTask('task1', 'adas', 'test1', '2023-11-09', 1, true);
+appFuncs.createToDoTask('task2', 'adas', 'test1', '2023-11-08', 2, true);
+appFuncs.createToDoTask('task3', 'adas', 'test2', '2023-11-07', 3, false);
+*/
 document.querySelector('#proj').addEventListener('mouseover', (e) => {
   e.currentTarget.nextElementSibling.style.visibility = 'visible';
   renderer.renderProjList(appFuncs.getProjectList());

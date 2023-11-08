@@ -2,8 +2,8 @@ import overlayedContentRenderer from './overlayedContentRenderer';
 import formHandler from './formHandler';
 import appFuncs from './applogics';
 
-function showTaskDetails({ projName, taskId }) {
-  document.querySelector('p#task-details').textContent = appFuncs.getTask(projName, taskId).taskDetails;
+function showTaskDetails({ projName, taskName }) {
+  document.querySelector('p#task-details').textContent = appFuncs.getTask(projName, taskName).taskDetails;
   overlayedContentRenderer.showOverlayedContent('div#task-details-container');
 }
 
@@ -13,7 +13,7 @@ export default function handleClick(e) {
     case 'edit-button':
       formHandler.setParams({
         projName: e.target.parentElement.getAttribute('proj-name'),
-        taskId: e.target.parentElement.getAttribute('id'),
+        taskName: e.target.parentElement.getAttribute('id'),
       });
       formHandler.fillTaskForm('#edit-form');
       overlayedContentRenderer.showOverlayedContent('div#edit-form-wrapper');
@@ -23,13 +23,13 @@ export default function handleClick(e) {
       overlayedContentRenderer.showOverlayedContent('div#ask-consent');
       formHandler.setFuncToExecOnConsent(appFuncs.deleteTask, {
         projName: e.target.parentElement.getAttribute('proj-name'),
-        taskId: e.target.parentElement.getAttribute('id'),
+        taskName: e.target.parentElement.getAttribute('id'),
       });
       break;
     case 'task-details':
       showTaskDetails({
         projName: e.target.parentElement.getAttribute('proj-name'),
-        taskId: Number(e.target.parentElement.getAttribute('id')),
+        taskName: e.target.parentElement.getAttribute('id'),
       });
       break;
     default:

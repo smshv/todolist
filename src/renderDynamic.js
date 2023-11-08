@@ -23,14 +23,14 @@ function createDomElem(
 }
 
 const renderer = (() => {
-  function renderProjCard(task, id, parent, currentCard = null) {
+  function renderProjCard(task, parent, currentCard = null) {
     const card = currentCard
       || createDomElem(
         'div',
         ['task-card'],
         [
           ['proj-name', task.projName],
-          ['id', id],
+          ['id', task.taskName],
         ],
         null,
         null,
@@ -94,7 +94,7 @@ const renderer = (() => {
     // console.log(this.taskGetter(this.params));
     document.querySelector('#delete-button').style.visibility = this.params.showDeleteButton ? 'visible' : 'hidden';
     this.taskGetter(this.params).forEach((task) => {
-      renderProjCard(task[0], task[1], mainBody);
+      renderProjCard(task, mainBody);
     });
   }
 
@@ -122,7 +122,6 @@ const renderer = (() => {
   function resetRenderer(taskGetter, params) {
     const keys = Object.keys(this.params);
     for (let i = 0; i < keys.length; i += 1) {
-      console.log(keys[i]);
       delete this.params[keys[i]];
     }
     Object.entries(params).forEach(([key, value]) => {
