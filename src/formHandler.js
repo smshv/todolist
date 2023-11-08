@@ -8,6 +8,7 @@ const formHandler = (() => {
   function handleTaskForm(e) {
     const formData = new FormData(e.currentTarget);
     appFuncs.createToDoTask( formData);
+    e.currentTarget.reset();
     overlayedContentRenderer.hideOverlayedContent();
     renderer.renderTaskList();
   }

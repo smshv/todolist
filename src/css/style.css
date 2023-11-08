@@ -152,6 +152,7 @@ nav li {
   color: white;
 }
 .due-date{
+  font-weight: 300;
   color: #991b1b;
 }
 .task-card {

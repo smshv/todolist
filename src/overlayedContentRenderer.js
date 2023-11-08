@@ -27,7 +27,8 @@ const overlayedContentRenderer = (() => {
     document.querySelectorAll('.create-form').forEach((x) => {
       x.classList.remove('active');
     });
-    document.querySelector(`form#${formId}`).classList.add('active');
+    const form = document.querySelector(`form#${formId}`)
+    form.classList.add('active');
     document.querySelectorAll('.form-menu-item').forEach((x) => {
       x.classList.remove('selected');
     });
